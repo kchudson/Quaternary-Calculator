@@ -5,9 +5,11 @@ import java.awt.event.ActionListener;
 
 
 public class UserInterface {
-
+    static String input = "";
 
     public static void main(String[] args) {
+
+
 
         JFrame ui = new JFrame("Quaternary Calculator");
         ui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -18,7 +20,11 @@ public class UserInterface {
         //Visible Display...
 
         JPanel window = new JPanel();
-        window.setPreferredSize(new Dimension(600,100));
+        window.setPreferredSize(new Dimension(600, 100));
+        JTextField display;
+        window.add(display = new JTextField(8));
+        display.setEditable(false);
+
         //
 
         //JOptionPane window = new JOptionPane();
@@ -46,23 +52,19 @@ public class UserInterface {
         panel3.add(button3);
 
         button0.addActionListener(new ListenZero());
-
-        //Uncomment these when classes are implemented
-        //button1.addActionListener(new ListenOne());
-        //button2.addActionListener((new ListenTwo());
-        //button3.addActionListener(new ListenThree());
-
+        button1.addActionListener(new ListenOne());
+        button2.addActionListener(new ListenTwo());
+        button3.addActionListener(new ListenThree());
 
 
         JPanel numberButtonsPanel = new JPanel();
-        numberButtonsPanel.setLayout(new GridLayout(2,2));
+        numberButtonsPanel.setLayout(new GridLayout(2, 2));
 
 
         numberButtonsPanel.add(panel0);
         numberButtonsPanel.add(panel1);
         numberButtonsPanel.add(panel2);
         numberButtonsPanel.add(panel3);
-
 
 
         //Operations "+","-","*","/" (EAST)
@@ -87,13 +89,12 @@ public class UserInterface {
         panel_mul.add(button_mul, BorderLayout.EAST);
 
         JPanel operationsPanel = new JPanel();
-        operationsPanel.setLayout(new GridLayout(4,1));
+        operationsPanel.setLayout(new GridLayout(4, 1));
 
         operationsPanel.add(panel_add, BorderLayout.EAST);
         operationsPanel.add(panel_sub, BorderLayout.EAST);
         operationsPanel.add(panel_div, BorderLayout.EAST);
         operationsPanel.add(panel_mul, BorderLayout.EAST);
-
 
 
         // "=" (SOUTH)
@@ -105,7 +106,7 @@ public class UserInterface {
         panel_equals.add(button_equals);
 
         JPanel equal_panel = new JPanel();
-        equal_panel.setLayout(new GridLayout(1,1));
+        equal_panel.setLayout(new GridLayout(1, 1));
         equal_panel.add(panel_equals);
 
 
@@ -116,14 +117,14 @@ public class UserInterface {
         panel_toggle.add(button_toggle);
 
         JPanel toggle_panel = new JPanel();
-        toggle_panel.setLayout(new GridLayout(1,1));
+        toggle_panel.setLayout(new GridLayout(1, 1));
         toggle_panel.add(panel_toggle);
 
         JPanel bottomPanel = new JPanel();
         bottomPanel.add(equal_panel);
         bottomPanel.add(toggle_panel);
 
-        ui.add(window,BorderLayout.NORTH);
+        ui.add(window, BorderLayout.NORTH);
         ui.add(numberButtonsPanel, BorderLayout.CENTER);
         ui.add(operationsPanel, BorderLayout.EAST);
         ui.add(bottomPanel, BorderLayout.SOUTH);
@@ -131,11 +132,39 @@ public class UserInterface {
         ui.pack();
         ui.setVisible(true);
     }
+
     static class ListenZero implements ActionListener {
         public void actionPerformed(ActionEvent e) {
+           input += "0";
             //replace line with actual actual code
-            System.out.println("0");
+            System.out.println(input);
         }
     }
 
+    static class ListenOne implements ActionListener {
+
+
+        public void actionPerformed(ActionEvent e) {
+            input += "1";
+            //replace line with actual actual code
+            System.out.println(input);
+        }
+
+    }
+
+     static class ListenTwo implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            input += "2";
+            //replace line with actual actual code
+            System.out.println(input);
+        }
+    }
+
+     static class ListenThree implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            input += "3";
+            //replace line with actual actual code
+            System.out.println(input);
+        }
+    }
 }

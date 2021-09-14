@@ -1,8 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class UserInterface {
+
 
     public static void main(String[] args) {
 
@@ -16,6 +19,8 @@ public class UserInterface {
 
         JPanel window = new JPanel();
         window.setPreferredSize(new Dimension(600,100));
+        //
+
         //JOptionPane window = new JOptionPane();
 
 
@@ -34,13 +39,24 @@ public class UserInterface {
         JButton button3 = new JButton(" 3 ");
         button3.setPreferredSize(numberButtons);
 
+
         panel0.add(button0);
         panel1.add(button1);
         panel2.add(button2);
         panel3.add(button3);
 
+        button0.addActionListener(new ListenZero());
+
+        //Uncomment these when classes are implemented
+        //button1.addActionListener(new ListenOne());
+        //button2.addActionListener((new ListenTwo());
+        //button3.addActionListener(new ListenThree());
+
+
+
         JPanel numberButtonsPanel = new JPanel();
         numberButtonsPanel.setLayout(new GridLayout(2,2));
+
 
         numberButtonsPanel.add(panel0);
         numberButtonsPanel.add(panel1);
@@ -114,6 +130,12 @@ public class UserInterface {
         ui.getLayeredPane();
         ui.pack();
         ui.setVisible(true);
+    }
+    static class ListenZero implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            //replace line with actual actual code
+            System.out.println("0");
+        }
     }
 
 }

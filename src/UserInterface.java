@@ -1,10 +1,15 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class UserInterface {
+    static String input = "";
 
     public static void main(String[] args) {
+
+
 
         JFrame ui = new JFrame("Quaternary Calculator");
         ui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -15,15 +20,21 @@ public class UserInterface {
         //Visible Display...
 
         JPanel window = new JPanel();
-        window.setPreferredSize(new Dimension(600,100));
+        window.setPreferredSize(new Dimension(600, 100));
+        JTextField display;
+        window.add(display = new JTextField(8));
+        display.setEditable(false);
+
+        //
+
         //JOptionPane window = new JOptionPane();
 
 
-        //4 Button Pannel
-        JPanel pannel0 = new JPanel();
-        JPanel pannel1 = new JPanel();
-        JPanel pannel2 = new JPanel();
-        JPanel pannel3 = new JPanel();
+        //4 Button Panel
+        JPanel panel0 = new JPanel();
+        JPanel panel1 = new JPanel();
+        JPanel panel2 = new JPanel();
+        JPanel panel3 = new JPanel();
         Dimension numberButtons = new Dimension(200, 200);
         JButton button0 = new JButton(" 0 ");
         button0.setPreferredSize(numberButtons);
@@ -34,26 +45,33 @@ public class UserInterface {
         JButton button3 = new JButton(" 3 ");
         button3.setPreferredSize(numberButtons);
 
-        pannel0.add(button0);
-        pannel1.add(button1);
-        pannel2.add(button2);
-        pannel3.add(button3);
 
-        JPanel numberButtonsPannel = new JPanel();
-        numberButtonsPannel.setLayout(new GridLayout(2,2));
+        panel0.add(button0);
+        panel1.add(button1);
+        panel2.add(button2);
+        panel3.add(button3);
 
-        numberButtonsPannel.add(pannel0);
-        numberButtonsPannel.add(pannel1);
-        numberButtonsPannel.add(pannel2);
-        numberButtonsPannel.add(pannel3);
+        button0.addActionListener(new ListenZero());
+        button1.addActionListener(new ListenOne());
+        button2.addActionListener(new ListenTwo());
+        button3.addActionListener(new ListenThree());
 
+
+        JPanel numberButtonsPanel = new JPanel();
+        numberButtonsPanel.setLayout(new GridLayout(2, 2));
+
+
+        numberButtonsPanel.add(panel0);
+        numberButtonsPanel.add(panel1);
+        numberButtonsPanel.add(panel2);
+        numberButtonsPanel.add(panel3);
 
 
         //Operations "+","-","*","/" (EAST)
-        JPanel pannel_add = new JPanel();
-        JPanel pannel_sub = new JPanel();
-        JPanel pannel_div = new JPanel();
-        JPanel pannel_mul = new JPanel();
+        JPanel panel_add = new JPanel();
+        JPanel panel_sub = new JPanel();
+        JPanel panel_div = new JPanel();
+        JPanel panel_mul = new JPanel();
 
         Dimension operationButtons = new Dimension(140, 60);
         JButton button_add = new JButton(" + ");
@@ -65,55 +83,88 @@ public class UserInterface {
         JButton button_mul = new JButton(" * ");
         button_mul.setPreferredSize(operationButtons);
 
-        pannel_add.add(button_add, BorderLayout.EAST);
-        pannel_sub.add(button_sub, BorderLayout.EAST);
-        pannel_div.add(button_div, BorderLayout.EAST);
-        pannel_mul.add(button_mul, BorderLayout.EAST);
+        panel_add.add(button_add, BorderLayout.EAST);
+        panel_sub.add(button_sub, BorderLayout.EAST);
+        panel_div.add(button_div, BorderLayout.EAST);
+        panel_mul.add(button_mul, BorderLayout.EAST);
 
-        JPanel operationsPannel = new JPanel();
-        operationsPannel.setLayout(new GridLayout(4,1));
+        JPanel operationsPanel = new JPanel();
+        operationsPanel.setLayout(new GridLayout(4, 1));
 
-        operationsPannel.add(pannel_add, BorderLayout.EAST);
-        operationsPannel.add(pannel_sub, BorderLayout.EAST);
-        operationsPannel.add(pannel_div, BorderLayout.EAST);
-        operationsPannel.add(pannel_mul, BorderLayout.EAST);
-
+        operationsPanel.add(panel_add, BorderLayout.EAST);
+        operationsPanel.add(panel_sub, BorderLayout.EAST);
+        operationsPanel.add(panel_div, BorderLayout.EAST);
+        operationsPanel.add(panel_mul, BorderLayout.EAST);
 
 
         // "=" (SOUTH)
         Dimension bottomButtons = new Dimension(260, 60);
 
-        JPanel pannel_equals = new JPanel();
+        JPanel panel_equals = new JPanel();
         JButton button_equals = new JButton(" = ");
         button_equals.setPreferredSize(bottomButtons);
-        pannel_equals.add(button_equals);
+        panel_equals.add(button_equals);
 
-        JPanel equal_pannel = new JPanel();
-        equal_pannel.setLayout(new GridLayout(1,1));
-        equal_pannel.add(pannel_equals);
+        JPanel equal_panel = new JPanel();
+        equal_panel.setLayout(new GridLayout(1, 1));
+        equal_panel.add(panel_equals);
 
 
         //Toggle (SOUTH)
-        JPanel pannel_toggle = new JPanel();
+        JPanel panel_toggle = new JPanel();
         JButton button_toggle = new JButton(" toggle ");
         button_toggle.setPreferredSize(bottomButtons);
-        pannel_toggle.add(button_toggle);
+        panel_toggle.add(button_toggle);
 
-        JPanel toggle_pannel = new JPanel();
-        toggle_pannel.setLayout(new GridLayout(1,1));
-        toggle_pannel.add(pannel_toggle);
+        JPanel toggle_panel = new JPanel();
+        toggle_panel.setLayout(new GridLayout(1, 1));
+        toggle_panel.add(panel_toggle);
 
-        JPanel bottomPannel = new JPanel();
-        bottomPannel.add(equal_pannel);
-        bottomPannel.add(toggle_pannel);
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.add(equal_panel);
+        bottomPanel.add(toggle_panel);
 
-        ui.add(window,BorderLayout.NORTH);
-        ui.add(numberButtonsPannel, BorderLayout.CENTER);
-        ui.add(operationsPannel, BorderLayout.EAST);
-        ui.add(bottomPannel, BorderLayout.SOUTH);
+        ui.add(window, BorderLayout.NORTH);
+        ui.add(numberButtonsPanel, BorderLayout.CENTER);
+        ui.add(operationsPanel, BorderLayout.EAST);
+        ui.add(bottomPanel, BorderLayout.SOUTH);
         ui.getLayeredPane();
         ui.pack();
         ui.setVisible(true);
     }
 
+    static class ListenZero implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+           input += "0";
+            //replace line with actual actual code
+            System.out.println(input);
+        }
+    }
+
+    static class ListenOne implements ActionListener {
+
+
+        public void actionPerformed(ActionEvent e) {
+            input += "1";
+            //replace line with actual actual code
+            System.out.println(input);
+        }
+
+    }
+
+     static class ListenTwo implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            input += "2";
+            //replace line with actual actual code
+            System.out.println(input);
+        }
+    }
+
+     static class ListenThree implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            input += "3";
+            //replace line with actual actual code
+            System.out.println(input);
+        }
+    }
 }

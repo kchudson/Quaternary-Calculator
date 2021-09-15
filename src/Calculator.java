@@ -88,4 +88,18 @@ public class Calculator {
 
         return result;
     }
+    
+    public int square(String num){
+        int nums = quatToDeci(num);
+        int result = nums * nums ;
+        result = Integer.parseInt(deciToQuat(result));
+        return result ;
+    }
+
+    public int squareRoot(String num){
+        int nums = quatToDeci(num);
+        int result = (int) Math.sqrt(nums);
+        result = Integer.parseInt(deciToQuat(result));
+        return result ;
+    }
 }

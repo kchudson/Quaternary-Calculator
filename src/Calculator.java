@@ -6,7 +6,7 @@ public class Calculator {
 
     public static void main(String[] args) {
         Calculator c = new Calculator();
-        c.splitInput("12-32");
+        c.splitInput("34-12");
     }
 
     public void splitInput(String input) {
@@ -43,31 +43,49 @@ public class Calculator {
         operate(num1, operator, num2);
     }
 
-    public void operate(int num1, String operator, int num2) {
+    public int operate(int num1, String operator, int num2) {
         int result = 0 ;
+        int num1Deci = quatToDeci(String.valueOf(num1));
+        int num2Deci = quatToDeci(String.valueOf(num2));
+
         switch(operator){
             case "+" :
-                result = num1 + num2;
+                result = num1Deci + num2Deci;
                 break;
             case "-":
-                result = num1 - num2;
+                result = num1Deci - num2Deci;
                 break;
             case "*":
-                result = num1 * num2;
+                result = num1Deci * num2Deci;
                 break;
             case "/":
-                result = num1 / num2;
+                result = num1Deci / num2Deci;
                 break;
         }
+        String resultString = deciToQuat(result);
         return result;
 
     }
 
-    public void quatToDeci(String num){
+    public int quatToDeci(String num){
         int result = 0;
         for (int i = 0; i < num.length(); i++){
             result += Character.getNumericValue(num.charAt(i)) * Math.pow(4,num.length()-i-1);
         }
-        System.out.println(result);
+
+        return result;
+    }
+
+    public String deciToQuat(int num) {
+        String result = "";
+        while(num != 0) {
+            int remainder;
+            remainder = num % 4;
+            num = num / 4;
+
+            result = remainder + result;
+        }
+
+        return result;
     }
 }

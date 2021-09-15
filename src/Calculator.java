@@ -4,11 +4,6 @@ public class Calculator {
 
     }
 
-    public static void main(String[] args) {
-        Calculator c = new Calculator();
-        c.splitInput("34-12");
-    }
-
     public int splitInput(String input) {
         int num1;
         int num2;
@@ -18,6 +13,8 @@ public class Calculator {
         int subtractEnd = input.indexOf('-');
         int multiplyEnd = input.indexOf('*');
         int divideEnd = input.indexOf('/');
+        int square = input.indexOf('^');
+        int root = input.indexOf('#');
 
         if (plusEnd != -1) {
             num1 = Integer.parseInt(input.substring(0, plusEnd));
@@ -34,14 +31,28 @@ public class Calculator {
             operator = "*";
             num2 = Integer.parseInt(input.substring(multiplyEnd+1));
         }
-        else {
+        else if (divideEnd != -1) {
             num1 = Integer.parseInt(input.substring(0, divideEnd));
             operator = "/";
             num2 = Integer.parseInt(input.substring(divideEnd+1));
         }
+        else if (square != -1) {
+            num1 = Integer.parseInt(input.substring(0, square));
+            operator = "^";
+            num2 = 0;
+        }
+        else if (root != -1) {
+            num1 = Integer.parseInt(input.substring(0, root));
+            operator = "#";
+            num2 = 0;
+        }
+        else {
+            num1 = 0;
+            operator = null;
+            num2 = 0;
+        }
 
-        int operation = operate(num1, operator, num2); // int operation
-        return operation;                              // return
+        return operate(num1, operator, num2);
     }
 
     public int operate(int num1, String operator, int num2) {
@@ -62,9 +73,17 @@ public class Calculator {
             case "/":
                 result = num1Deci / num2Deci;
                 break;
+            case "^":
+                result = square(String.valueOf(num1));
+                break;
+            case "#":
+                result = squareRoot(String.valueOf(num1));
+                break;
+            default:
+                System.out.println("Invalid operation");
         }
         String resultString = deciToQuat(result);
-        return result;
+        return Integer.parseInt(resultString);
 
     }
 

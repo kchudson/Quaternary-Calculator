@@ -7,6 +7,9 @@ import java.awt.event.ActionListener;
 public class UserInterface {
     static String input = "";
 
+    //Ideally these two lines would be in a separate interface class.
+    Calculator calculator = new Calculator();
+    final static int number_of_digits = 8;
 
     public static void main(String[] args) {
 
@@ -23,7 +26,7 @@ public class UserInterface {
         JPanel window = new JPanel();
         window.setPreferredSize(new Dimension(600, 100));
         JTextField display;
-        window.add(display = new JTextField(8));
+        window.add(display = new JTextField(number_of_digits));
         display.setEditable(false);
 
         //
@@ -174,7 +177,8 @@ public class UserInterface {
     static class ListenAdd implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             if (!input.equals("")){
-                if (input.charAt(input.length() - 1) != '+')
+                if (input.charAt(input.length() - 1) != '+' && input.charAt(input.length() - 1) != '-' && input.charAt(input.length() - 1) != '*'
+                && input.charAt(input.length() - 1) != '/')
                 input += "+";}
             //replace line with actual actual code
             System.out.println(input);
@@ -183,7 +187,8 @@ public class UserInterface {
     static class ListenSub implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             if (!input.equals("")){
-                if (input.charAt(input.length() - 1) != '-')
+                if (input.charAt(input.length() - 1) != '+' && input.charAt(input.length() - 1) != '-' && input.charAt(input.length() - 1) != '*'
+                        && input.charAt(input.length() - 1) != '/')
                     input += "-";}
             //replace line with actual actual code
             System.out.println(input);
@@ -192,7 +197,8 @@ public class UserInterface {
     static class ListenMul implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             if (!input.equals("")){
-                if (input.charAt(input.length() - 1) != '*')
+                if (input.charAt(input.length() - 1) != '+' && input.charAt(input.length() - 1) != '-' && input.charAt(input.length() - 1) != '*'
+                        && input.charAt(input.length() - 1) != '/')
                     input += "*";}
             //replace line with actual actual code
             System.out.println(input);
@@ -201,7 +207,8 @@ public class UserInterface {
     static class ListenDiv implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             if (!input.equals("")){
-                if (input.charAt(input.length() - 1) != '/')
+                if (input.charAt(input.length() - 1) != '+' && input.charAt(input.length() - 1) != '-' && input.charAt(input.length() - 1) != '*'
+                        && input.charAt(input.length() - 1) != '/')
                     input += "/";}
             //replace line with actual actual code
             System.out.println(input);

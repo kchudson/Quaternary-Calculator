@@ -39,7 +39,7 @@ public class UserInterface {
         JPanel panel1 = new JPanel();
         JPanel panel2 = new JPanel();
         JPanel panel3 = new JPanel();
-        Dimension numberButtons = new Dimension(200, 200);
+        Dimension numberButtons = new Dimension(160, 200);
         JButton button0 = new JButton(" 0 ");
         button0.setPreferredSize(numberButtons);
         JButton button1 = new JButton(" 1 ");
@@ -77,7 +77,7 @@ public class UserInterface {
         JPanel panel_div = new JPanel();
         JPanel panel_mul = new JPanel();
 
-        Dimension operationButtons = new Dimension(140, 60);
+        Dimension operationButtons = new Dimension(100, 90);
         JButton button_add = new JButton(" + ");
         button_add.setPreferredSize(operationButtons);
         JButton button_sub = new JButton(" - ");
@@ -106,6 +106,26 @@ public class UserInterface {
         operationsPanel.add(panel_mul, BorderLayout.EAST);
 
 
+        //WEST (square and square root)
+        JPanel squareRootPanel = new JPanel();
+        JPanel squarePanel = new JPanel();
+        JButton squareRootButton = new JButton("√");
+        JButton squareButton = new JButton("^2");
+
+        squareRootPanel.add(squareRootButton);
+        squarePanel.add(squareButton);
+
+        Dimension LeftButtons = new Dimension(100, 200);
+        squareRootButton.setPreferredSize(LeftButtons);
+        squareButton.setPreferredSize(LeftButtons);
+
+        JPanel leftPanel = new JPanel();
+        leftPanel.setLayout(new GridLayout(2, 1));
+
+        leftPanel.add(squareRootPanel);
+        leftPanel.add(squarePanel);
+
+
         // "=" (SOUTH)
         Dimension bottomButtons = new Dimension(260, 60);
 
@@ -117,7 +137,6 @@ public class UserInterface {
         JPanel equal_panel = new JPanel();
         equal_panel.setLayout(new GridLayout(1, 1));
         equal_panel.add(panel_equals);
-
 
         //Toggle (SOUTH)
         JPanel panel_toggle = new JPanel();
@@ -133,8 +152,40 @@ public class UserInterface {
         bottomPanel.add(equal_panel);
         bottomPanel.add(toggle_panel);
 
+        Font numberFont = new Font("Arial", Font.PLAIN, 40);
+        Font operationsFont = new Font("Arial", Font.PLAIN, 30);
+        Font lowerButtonsFont = new Font("Arial", Font.PLAIN, 30);
+        Font leftButtonsFont = new Font("Arial", Font.PLAIN, 40);
+        button0.setFont(numberFont);
+        button1.setFont(numberFont);
+        button2.setFont(numberFont);
+        button3.setFont(numberFont);
+        button_add.setFont(operationsFont);
+        button_sub.setFont(operationsFont);
+        button_mul.setFont(operationsFont);
+        button_div.setFont(operationsFont);
+        button_equals.setFont(lowerButtonsFont);
+        button_toggle.setFont(lowerButtonsFont);
+        squareRootButton.setFont(leftButtonsFont);
+        squareButton.setFont(leftButtonsFont);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         ui.add(window, BorderLayout.NORTH);
         ui.add(numberButtonsPanel, BorderLayout.CENTER);
+        ui.add(leftPanel, BorderLayout.WEST);
         ui.add(operationsPanel, BorderLayout.EAST);
         ui.add(bottomPanel, BorderLayout.SOUTH);
         ui.getLayeredPane();

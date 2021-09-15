@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 public class UserInterface {
     static String input = "";
-    Calculator calc = new Calculator();
+
 
     public static void main(String[] args) {
 
@@ -89,6 +89,11 @@ public class UserInterface {
         panel_div.add(button_div, BorderLayout.EAST);
         panel_mul.add(button_mul, BorderLayout.EAST);
 
+        button_add.addActionListener(new ListenAdd());
+        button_sub.addActionListener(new ListenSub());
+        button_div.addActionListener(new ListenDiv());
+        button_mul.addActionListener(new ListenMul());
+
         JPanel operationsPanel = new JPanel();
         operationsPanel.setLayout(new GridLayout(4, 1));
 
@@ -143,8 +148,6 @@ public class UserInterface {
     }
 
     static class ListenOne implements ActionListener {
-
-
         public void actionPerformed(ActionEvent e) {
             input += "1";
             //replace line with actual actual code
@@ -164,6 +167,42 @@ public class UserInterface {
      static class ListenThree implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             input += "3";
+            //replace line with actual actual code
+            System.out.println(input);
+        }
+    }
+    static class ListenAdd implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            if (!input.equals("")){
+                if (input.charAt(input.length() - 1) != '+')
+                input += "+";}
+            //replace line with actual actual code
+            System.out.println(input);
+        }
+    }
+    static class ListenSub implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            if (!input.equals("")){
+                if (input.charAt(input.length() - 1) != '-')
+                    input += "-";}
+            //replace line with actual actual code
+            System.out.println(input);
+        }
+    }
+    static class ListenMul implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            if (!input.equals("")){
+                if (input.charAt(input.length() - 1) != '*')
+                    input += "*";}
+            //replace line with actual actual code
+            System.out.println(input);
+        }
+    }
+    static class ListenDiv implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            if (!input.equals("")){
+                if (input.charAt(input.length() - 1) != '/')
+                    input += "/";}
             //replace line with actual actual code
             System.out.println(input);
         }

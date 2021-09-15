@@ -13,8 +13,6 @@ public class UserInterface {
 
     public static void main(String[] args) {
 
-
-
         JFrame ui = new JFrame("Quaternary Calculator");
         ui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ui.setSize(600, 800);
@@ -125,6 +123,10 @@ public class UserInterface {
         leftPanel.add(squareRootPanel);
         leftPanel.add(squarePanel);
 
+        squareRootButton.addActionListener(new ListenSquareRoot());
+        squareButton.addActionListener(new ListenSquare());
+
+
 
         // "=" (SOUTH)
         Dimension bottomButtons = new Dimension(260, 60);
@@ -137,6 +139,8 @@ public class UserInterface {
         JPanel equal_panel = new JPanel();
         equal_panel.setLayout(new GridLayout(1, 1));
         equal_panel.add(panel_equals);
+
+        button_equals.addActionListener(new ListenEqual());
 
         //Toggle (SOUTH)
         JPanel panel_toggle = new JPanel();
@@ -151,6 +155,10 @@ public class UserInterface {
         JPanel bottomPanel = new JPanel();
         bottomPanel.add(equal_panel);
         bottomPanel.add(toggle_panel);
+
+        button_toggle.addActionListener(new ListenToggle());
+
+
 
         Font numberFont = new Font("Arial", Font.PLAIN, 40);
         Font operationsFont = new Font("Arial", Font.PLAIN, 30);
@@ -265,4 +273,56 @@ public class UserInterface {
             System.out.println(input);
         }
     }
+
+
+    static class ListenEqual implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            if (!input.equals("")){
+                Calculator calculate = new Calculator();
+                if (input.charAt(input.length() - 1) != '=')
+                    System.out.println(calculate.splitInput(input));
+                    input = "";
+            }
+        }
+    }
+
+    static class ListenToggle implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+           // if (!input.equals("")){
+               // Calculator calculate = new Calculator();
+                //if (input.charAt(input.length() - 1) != '=')
+                    //if (input)
+                    //System.out.println(calculate.splitInput(input));
+           // }
+            //System.out.println(input);
+        }
+    }
+
+
+    static class ListenSquareRoot implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            if (!input.equals("")){ input += "^2";
+                Calculator calculate = new Calculator();
+                System.out.println(calculate.squareRoot(input));
+            }
+            //replace line with actual actual code
+            System.out.println(input);
+        }
+    }
+
+    static class ListenSquare implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            if (!input.equals("")){ input += "^2";
+                Calculator calculate = new Calculator();
+                System.out.println(calculate.square(input));
+            }
+            //replace line with actual actual code
+            System.out.println(input);
+        }
+    }
+
+
+
+
+
 }

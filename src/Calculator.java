@@ -9,7 +9,7 @@ public class Calculator {
         c.splitInput("34-12");
     }
 
-    public void splitInput(String input) {
+    public int splitInput(String input) {
         int num1;
         int num2;
         String operator;
@@ -40,7 +40,8 @@ public class Calculator {
             num2 = Integer.parseInt(input.substring(divideEnd+1));
         }
 
-        operate(num1, operator, num2);
+        int operation = operate(num1, operator, num2); // int operation
+        return operation;                              // return
     }
 
     public int operate(int num1, String operator, int num2) {

@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 public class UserInterface {
     static String input = "";
+    Calculator calc = new Calculator();
 
     public static void main(String[] args) {
 

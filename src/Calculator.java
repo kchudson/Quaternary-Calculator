@@ -44,6 +44,30 @@ public class Calculator {
     }
 
     public void operate(int num1, String operator, int num2) {
+        int result = 0 ;
+        switch(operator){
+            case "+" :
+                result = num1 + num2;
+                break;
+            case "-":
+                result = num1 - num2;
+                break;
+            case "*":
+                result = num1 * num2;
+                break;
+            case "/":
+                result = num1 / num2;
+                break;
+        }
+        return result;
 
+    }
+
+    public void quatToDeci(String num){
+        int result = 0;
+        for (int i = 0; i < num.length(); i++){
+            result += Character.getNumericValue(num.charAt(i)) * Math.pow(4,num.length()-i-1);
+        }
+        System.out.println(result);
     }
 }

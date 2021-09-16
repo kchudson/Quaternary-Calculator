@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 
 public class UserInterface {
-    static String input = "";
+    static String input = " ";
 
     //Ideally these two lines would be in a separate interface class.
     Calculator calculator = new Calculator();
@@ -25,6 +25,7 @@ public class UserInterface {
         window.setPreferredSize(new Dimension(600, 100));
         JTextField display;
         window.add(display = new JTextField(number_of_digits));
+        display.setText(" ");
         display.setEditable(false);
 
         //
@@ -40,6 +41,7 @@ public class UserInterface {
         Dimension numberButtons = new Dimension(160, 200);
         JButton button0 = new JButton(" 0 ");
         button0.setPreferredSize(numberButtons);
+
         JButton button1 = new JButton(" 1 ");
         button1.setPreferredSize(numberButtons);
         JButton button2 = new JButton(" 2 ");
@@ -53,10 +55,30 @@ public class UserInterface {
         panel2.add(button2);
         panel3.add(button3);
 
-        button0.addActionListener(new ListenZero());
-        button1.addActionListener(new ListenOne());
-        button2.addActionListener(new ListenTwo());
-        button3.addActionListener(new ListenThree());
+        button0.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                display.setText(display.getText()+" 0");
+            }
+        });
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                display.setText(display.getText()+" 1");
+            }
+        });
+        button2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                display.setText(display.getText()+" 2");
+            }
+        });
+        button3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                display.setText(display.getText()+" 3");
+            }
+        });
 
 
         JPanel numberButtonsPanel = new JPanel();
@@ -90,10 +112,30 @@ public class UserInterface {
         panel_div.add(button_div, BorderLayout.EAST);
         panel_mul.add(button_mul, BorderLayout.EAST);
 
-        button_add.addActionListener(new ListenAdd());
-        button_sub.addActionListener(new ListenSub());
-        button_div.addActionListener(new ListenDiv());
-        button_mul.addActionListener(new ListenMul());
+        button_add.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                display.setText(display.getText()+" +");
+            }
+        });
+        button_sub.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                display.setText(display.getText()+" -");
+            }
+        });
+        button_div.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                display.setText(display.getText()+" /");
+            }
+        });
+        button_mul.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                display.setText(display.getText()+" *");
+            }
+        });
 
         JPanel operationsPanel = new JPanel();
         operationsPanel.setLayout(new GridLayout(4, 1));
@@ -123,8 +165,18 @@ public class UserInterface {
         leftPanel.add(squareRootPanel);
         leftPanel.add(squarePanel);
 
-        squareRootButton.addActionListener(new ListenSquareRoot());
-        squareButton.addActionListener(new ListenSquare());
+        squareRootButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                display.setText(display.getText()+" √");
+            }
+        });
+        squareButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                display.setText(display.getText()+" ^2");
+            }
+        });
 
 
 
@@ -140,7 +192,12 @@ public class UserInterface {
         equal_panel.setLayout(new GridLayout(1, 1));
         equal_panel.add(panel_equals);
 
-        button_equals.addActionListener(new ListenEqual());
+        button_equals.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                display.setText(display.getText()+" =");
+            }
+        });
 
         //Toggle (SOUTH)
         JPanel panel_toggle = new JPanel();
@@ -201,9 +258,11 @@ public class UserInterface {
         ui.setVisible(true);
     }
 
+
     static class ListenZero implements ActionListener {
         public void actionPerformed(ActionEvent e) {
            input += "0";
+           input.;
             //replace line with actual actual code
             System.out.println(input);
         }
@@ -316,7 +375,6 @@ public class UserInterface {
                 Calculator calculate = new Calculator();
                 System.out.println(calculate.square(input));
             }
-            //replace line with actual actual code
             System.out.println(input);
         }
     }
